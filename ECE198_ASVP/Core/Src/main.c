@@ -53,6 +53,10 @@ uint32_t Value1 = 0;
 uint32_t Value2 = 0;
 uint16_t Distance  = 0;  // cm
 uint16_t const MAX_DISTANCE = 50; //cm
+uint16_t state = 0;
+uint16_t const STOPPED = 0;
+uint16_t const MOVING = 1;
+uint16_t const TURNING = 2;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -127,11 +131,31 @@ int main(void)
 
 	  if(distance <= MAX_DISTANCE)
 	  {
-		  //stop the vehicle from moving
+		  state = STOPPED;
 	  }
 
 	  HAL_Delay(50);
-	  /* USER CODE END WHILE */
+
+	  //executes the appropriate functions based on what state the vehicle is in
+	  if(state == STOPPED)
+	  {
+		  //checks if the user button is pressed and starts the vehicle if it is pressed
+		  	  if(HAL_GPIO_ReadPin(GPIOC, GPIO_Pin_13) != GPIO_PIN_RESET)
+		  	  {
+		  		  //start moving
+		  		  state = MOVING;
+		  	  }
+	  }
+	  else if(state == MOVING)
+	  {
+
+	  }
+	  else if(state == TURNING)
+	  {
+
+	  }
+
+    /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }
@@ -281,11 +305,11 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, LD2_Pin|GPIO_PIN_9, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : B1_Pin */
-  GPIO_InitStruct.Pin = B1_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+  /*Configure GPIO pin : PC13 */
+  GPIO_InitStruct.Pin = GPIO_PIN_13;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pins : LD2_Pin PA9 */
   GPIO_InitStruct.Pin = LD2_Pin|GPIO_PIN_9;
