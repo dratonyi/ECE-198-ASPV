@@ -129,22 +129,25 @@ int main(void)
 
 	  Distance = (Value2-Value1)* 0.034/2;
 
-	  if(distance <= MAX_DISTANCE)
+	  if(Distance <= MAX_DISTANCE)
 	  {
+		  //changes the state to stopped
 		  state = STOPPED;
 	  }
-
-	  HAL_Delay(50);
 
 	  //executes the appropriate functions based on what state the vehicle is in
 	  if(state == STOPPED)
 	  {
 		  //checks if the user button is pressed and starts the vehicle if it is pressed
-		  	  if(HAL_GPIO_ReadPin(GPIOC, GPIO_Pin_13) != GPIO_PIN_RESET)
-		  	  {
-		  		  //start moving
-		  		  state = MOVING;
-		  	  }
+		  if(HAL_GPIO_ReadPin(GPIOC, GPIO_Pin_13) != GPIO_PIN_RESET)
+		  {
+		  	//waits 10 seconds before starting the vehicle
+		  	HAL_Delay(10000);
+
+		  	//start moving
+		  	state = MOVING;
+		  }
+
 	  }
 	  else if(state == MOVING)
 	  {
@@ -154,6 +157,9 @@ int main(void)
 	  {
 
 	  }
+
+	  HAL_Delay(50);
+
 
     /* USER CODE END WHILE */
 
