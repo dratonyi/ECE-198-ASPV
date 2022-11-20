@@ -46,15 +46,6 @@ unsigned int state = 0;
 unsigned int const STOP = 0;
 unsigned int const DRIVE = 1;
 unsigned int const TURN = 2;
-unsigned int length_travelled = 0;
-unsigned int width_travelled = 0;
-unsigned int const MAX_LENGTH = 5;
-unsigned int const WIDTH = 2;
-double const PI = 3.14159;
-double const DIAMETER = 0.065;
-double const DEVICE_WIDTH = 0.15;
-int const RPM = 120;
-unsigned int right_turn = 1; //1 = true, 0 = false;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -67,12 +58,7 @@ static void MX_USART2_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-double calc_distance(double time);
 
-double calc_distance(double time)
-{
-	return RPM / 60 * time * DIAMETER * PI;
-}
 /* USER CODE END 0 */
 
 /**
@@ -114,16 +100,7 @@ int main(void)
   {
     if(state == STOP)
     {
-    	if(HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == GPIO_PIN_SET)
-    	{
-    		HAL_Delay(10000);
 
-    		//turn on the two motors
-    		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_SET);
-    		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
-
-    		state = DRIVE;
-    	}
     }
     else if(state == DRIVE)
     {
@@ -131,26 +108,8 @@ int main(void)
     }
     else if(state == TURN)
     {
-    	if(length_travelled >= DEVICE_WIDTH * PI)
-    	{
-    		if(right_turn == 1)
-    		{
-    			right_turn = 0;
-    		}
-    		else
-    		{
-    			right_turn = 1;
-    		}
 
-    		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_SET);
-    		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
-
-    		state = DRIVE;
-    	}
     }
-
-    HAL_Delay(50);
-
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -253,7 +212,7 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1|GPIO_PIN_4|LD2_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : B1_Pin */
   GPIO_InitStruct.Pin = B1_Pin;
@@ -261,12 +220,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : PA1 PA4 LD2_Pin */
-  GPIO_InitStruct.Pin = GPIO_PIN_1|GPIO_PIN_4|LD2_Pin;
+  /*Configure GPIO pin : LD2_Pin */
+  GPIO_InitStruct.Pin = LD2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  HAL_GPIO_Init(LD2_GPIO_Port, &GPIO_InitStruct);
 
 }
 
