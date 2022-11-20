@@ -42,9 +42,11 @@
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
-#define RED_LED GPIO_PIN_7;
-#define GREEN_LED GPIO_PIN_6;
-#define LED_PORT GPIOA;
+#define RED_LED GPIO_PIN_7
+#define GREEN_LED GPIO_PIN_6
+#define LED_PORT GPIOA
+#define USER_BUTTON GPIO_PIN_13
+#define BUTTON_PORT GPIOC
 unsigned int state = 0;
 unsigned int const STOP = 0;
 unsigned int const DRIVE = 1;
@@ -103,11 +105,39 @@ int main(void)
   {
     if(state == STOP)
     {
+    	//if the green LED is off, turns it on
+    	if(HAL_GPIO_ReadPin(LED_PORT, GREEN_LED) == GPIO_PIN_RESET)
+    	{
+    		//turns on the green LED
+    		HAL_GPIO_WritePin(LED_PORT, GREEN_LED, GPIO_PIN_SET);
+    	}
 
+    	//if the red LED is on, turns it off
+    	if(HAL_GPIO_ReadPin(LED_PORT, RED_LED) == GPIO_PIN_SET)
+    	{
+    		HAL_GPIO_WritePin(LED_PORT, RED_LED, GPIO_PIN_RESET);
+    	}
+
+    	if(HAL_GPIO_ReadPin(BUTTON_PORT, USER_BUTTON) == GPIO_PIN_SET)
+    	{
+    		HAL_Delay(10000);
+    		state = DRIVE;
+    	}
     }
     else if(state == DRIVE)
     {
+    	//if the green LED is off, turns it on
+    	if(HAL_GPIO_ReadPin(LED_PORT, GREEN_LED) == GPIO_PIN_SET)
+    	{
+    		//turns on the green LED
+    	    HAL_GPIO_WritePin(LED_PORT, GREEN_LED, GPIO_PIN_RESET);
+    	}
 
+    	//if the red LED is on, turns it off
+    	if(HAL_GPIO_ReadPin(LED_PORT, RED_LED) == GPIO_PIN_RESET)
+    	{
+    		HAL_GPIO_WritePin(LED_PORT, RED_LED, GPIO_PIN_SET);
+    	}
     }
     else if(state == TURN)
     {
