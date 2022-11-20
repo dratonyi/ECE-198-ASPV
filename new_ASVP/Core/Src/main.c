@@ -42,7 +42,10 @@
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
-
+unsigned int state = 0;
+unsigned int const STOP = 0;
+unsigned int const DRIVE = 1;
+unsigned int const TURN = 2;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -95,6 +98,18 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    if(state == STOP)
+    {
+
+    }
+    else if(state == DRIVE)
+    {
+
+    }
+    else if(state == TURN)
+    {
+
+    }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
