@@ -1,10 +1,10 @@
-15:56:19 **** Incremental Build of configuration Debug for project new_ASVP ****
+20:01:59 **** Incremental Build of configuration Debug for project new_ASVP ****
 make -j16 all 
 arm-none-eabi-size   new_ASVP.elf 
    text	   data	    bss	    dec	    hex	filename
-   7668	     20	   1644	   9332	   2474	new_ASVP.elf
+   7956	     20	   1644	   9620	   2594	new_ASVP.elf
 Finished building: default.size.stdout
  
 
-15:56:19 Build Finished. 0 errors, 0 warnings. (took 538ms)
+20:01:59 Build Finished. 0 errors, 0 warnings. (took 545ms)
 

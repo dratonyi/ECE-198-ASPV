@@ -60,8 +60,8 @@ all: main-build
 main-build: new_ASVP.elf secondary-outputs
 
 # Tool invocations
-new_ASVP.elf new_ASVP.map: $(OBJS) $(USER_OBJS) C:\Coding\Unity\ECE-198-ASPV\new_ASVP\STM32F401RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "new_ASVP.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Coding\Unity\ECE-198-ASPV\new_ASVP\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="new_ASVP.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+new_ASVP.elf new_ASVP.map: $(OBJS) $(USER_OBJS) C:\Users\dani\Coding\ECE198\ECE-198-ASPV\new_ASVP\STM32F401RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "new_ASVP.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\dani\Coding\ECE198\ECE-198-ASPV\new_ASVP\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="new_ASVP.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
