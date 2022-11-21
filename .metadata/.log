@@ -127,3 +127,22 @@ java.lang.Exception: The project description file (.project) for 'ECE198_ASVP' i
 
 !ENTRY org.eclipse.cdt.core 1 0 2022-11-20 15:54:32.875
 !MESSAGE Indexed 'new_ASVP' (22 sources, 109 headers) in 4.43 sec: 9,382 declarations; 36,298 references; 6 unresolved inclusions; 848 syntax errors; 1,071 unresolved names (2.3%)
+!SESSION 2022-11-20 19:42:39.882 -----------------------------------------------
+eclipse.buildId=Version 1.10.1
+java.version=11.0.14.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_CA
+Framework arguments:  C:\Users\dani\Coding\ECE198\ECE-198-ASPV\new_ASVP\.project
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\Users\dani\Coding\ECE198\ECE-198-ASPV\new_ASVP\.project
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2022-11-20 19:45:39.883
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2022-11-20 19:45:39.985
+!MESSAGE Log4j initialized with config file C:\Users\dani\Coding\ECE198\ECE-198-ASPV\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2022-11-20 19:45:50.154
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2022-11-20 19:45:54.233
+!MESSAGE Indexed 'new_ASVP' (22 sources, 110 headers) in 3.87 sec: 9,375 declarations; 38,181 references; 2 unresolved inclusions; 42 syntax errors; 147 unresolved names (0.31%)
